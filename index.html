@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ray</title>
+  <script src="main.js"></script>
+  <style>
+    body {
+      background-color: black;
+      text-align: center;
+    }
+    canvas {
+      border: solid white 2px;
+    }
+  </style>
+</head>
+<body onload="init();">
+  <canvas id="c" width="400px" height="400px">canvas not supported</canvas>
+  <script id="fs" type="x-shader/fragment-shader">
+  precision mediump float;
+
+  varying vec2 scr;
+
+  void main(void) {
+    vec2 c = scr / 2.0 + 0.5;
+    gl_FragColor = vec4(c, 0.0, 1.0);
+  }
+  </script>
+  <script id="vs" type="x-shader/vertex-shader">
+  attribute vec3 aVertex;
+  varying vec2 scr;
+  void main() {
+    gl_Position = vec4(aVertex, 1.0);
+    scr = aVertex.xy;
+  }
+  </script>
+</body>
+</html>
